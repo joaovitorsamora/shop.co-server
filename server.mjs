@@ -9,7 +9,8 @@ const middlewares = Jsonserver.defaults()
 
 server.use(cors())
 
-server.use(express.static("public"));
+server.use(express.static(path.join(process.cwd(), "public")));
+
 
 server.use(middlewares)
 server.use(router)
