@@ -5,7 +5,7 @@ const server = Jsonserver.create()
 const router = Jsonserver.router("db.json")
 const middlewares = Jsonserver.defaults()
 
-server.use("/images", JsonServer.static(path.join(__dirname, "public/images")));
+server.use("/images", Jsonserver.static(path.join(__dirname, "public/images")));
 
 server.use(middlewares)
 server.use(router)
