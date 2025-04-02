@@ -4,10 +4,6 @@ const router = Jsonserver.router("db.json")
 const middlewares = Jsonserver.defaults()
 
 server.use(middlewares)
-server.use(Jsonserver.rewriter({
-    '/*': '/$1',
-})
-)
 
 server.use(router)
 
