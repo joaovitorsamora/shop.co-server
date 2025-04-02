@@ -7,14 +7,9 @@ const server = Jsonserver.create()
 const router = Jsonserver.router("db.json")
 const middlewares = Jsonserver.defaults()
 
-server.use("/images", express.static(path.join(process.cwd(), "public")));
-
-
 server.use(cors())
 
-server.use(express.json())
-
-server.use("images", express.static('public'))
+server.use(express.static("public"));
 
 server.use(middlewares)
 server.use(router)

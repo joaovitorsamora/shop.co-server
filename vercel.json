@@ -7,5 +7,7 @@
     "routes": 
     [{ "src": "/(.*)",
         "dest": "/server.mjs" 
+    }, { "src": "/images/(.*)",
+        "dest": "/public/images/$1" 
     }]
 }
