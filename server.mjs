@@ -1,22 +1,20 @@
-import Jsonserver from "json-server"
+import { readFileSync } from "fs"
 import express from "express"
-import cors from "cors"
-import path from "path"
 
-const server = Jsonserver.create()
-const router = Jsonserver.router("db.json")
-const middlewares = Jsonserver.defaults()
+const app = express()
 
-server.use(cors())
+const data = JSON.parse(readFileSync("db.json"), "utf-8")
 
-server.use(express.static(path.join(process.cwd(), "public")));
+const db = {  
+    products: data.products
+}
 
-
-server.use(middlewares)
-server.use(router)
-
-server.listen(3000, () => {
-    console.log('JSON Server is running on port 3000')
+app.get("/products", (req, res) => { 
+    res.json(db.products)
 })
 
-export default server
+app.listen(3000, () => {
+    console.log("Server is running on port 3000")
+})
+
+
