@@ -39,7 +39,7 @@ const db = {
       },
       {
         id: 3,
-        image: ["/poço-branco&preto-desktop.png"],
+        image: ["/polo-branco&preto-desktop.png"],
         title: "Black Striped T-shirt",
         starsReviewImage: "/Stars5.png",
         review: 5.0,
