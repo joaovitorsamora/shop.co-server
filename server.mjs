@@ -39,7 +39,7 @@ const db = {
       },
       {
         id: 3,
-        image: ["/camisa-branco&preto-desktop.png"],
+        image: ["/poço-branco&preto-desktop.png"],
         title: "Black Striped T-shirt",
         starsReviewImage: "/Stars5.png",
         review: 5.0,
@@ -52,7 +52,7 @@ const db = {
       },
       {
         id: 4,
-        image: ["/calça-jeans-desktop.png"],
+        image: ["/calça-jeans2.png"],
         title: "SKINNY FIT JEANS",
         starsReviewImage: "/Stars3-5.png",
         review: 3.5,
@@ -102,7 +102,7 @@ const db = {
       },
       {
         id: 8,
-        image: ["/camisa-laranja-desktop.png"],
+        image: ["/camisa-laranja2.png"],
         title: "COURAGE GRAPHIC T-SHIRT",
         starsReviewImage: "/Stars4.png",
         review: 4.0,
