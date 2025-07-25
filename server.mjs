@@ -259,7 +259,8 @@ app.get("/products/:id/starsReviewImage", (req, res) => {
 });
 
 app.get("/testimonials/:testimonialsId/verificationImage", (req, res) => {
-  const testimonial = product.testimonials.find((t) => t.id === parseInt(testimonialId));
+  const { id } = req.params;
+  const testimonial = product.testimonials.find((t) => t.id === parseInt(id));
   if (!testimonial || !testimonial.verificationImage) {
     return res.status(404).json({ error: "Verification image not found" });
   }
