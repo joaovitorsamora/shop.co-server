@@ -258,19 +258,14 @@ app.get("/products/:id/starsReviewImage", (req, res) => {
   res.sendFile(starsReviewImagePath);
 });
 
-app.get("/products/:productId/testimonials/:testimonialId/verification", (req, res) => {
-  const { productId, testimonialId } = req.params;
-  const product = db.products.find((p) => p.id === parseInt(productId));
-  if (!product) {
-    return res.status(404).json({ error: "Product not found" });
-  }
+app.get("/testimonials/:testimonialsId/verificationImage", (req, res) => {
   const testimonial = product.testimonials.find((t) => t.id === parseInt(testimonialId));
   if (!testimonial || !testimonial.verificationImage) {
     return res.status(404).json({ error: "Verification image not found" });
   }
   const verificationImagePath = path.join(__dirname, "public/images", testimonial.verificationImage);
   res.sendFile(verificationImagePath);
-});
+}); 
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
