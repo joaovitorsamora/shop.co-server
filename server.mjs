@@ -160,7 +160,7 @@ const db = {
       id: 2,
       name: "Samantha D.",
       quote: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt.",
-      starsReviewImage: "/Stars3.png",
+      starsReviewImage: "/Stars3-5.png",
       verificationImage: "/verification.png"
     },
     {
@@ -174,7 +174,7 @@ const db = {
       id: 4,
       name: "Liam K.",
       quote: "This t-shirt is a fusion of comfort and creativity. The fabric is soft, and the design speaks volumes about the designer's skill. It's like wearing a piece of art that reflects my passion for both design and fashion.",
-      starsReviewImage: "/Stars3.png",
+      starsReviewImage: "/Stars3-5.png",
       verificationImage: "/verification.png"
     },
     {
@@ -188,14 +188,14 @@ const db = {
       id: 6,
       name: "Olivia P.",
       quote: "As a UI/UX enthusiast, I value simplicity and functionality. This t-shirt not only represents those principles but also feels great to wear. It's evident that the designer poured their creativity into making this t-shirt stand out.",
-      starsReviewImage: "/Stars3.png",
+      starsReviewImage: "/Stars3-5.png",
       verificationImage: "/verification.png"
     },
     {
       id: 7,
       name: "Ava H.",
       quote: "I'm not just wearing a t-shirt; I'm wearing a piece of design philosophy. The intricate details and thoughtful layout of the design make this shirt a conversation starter.",
-      starsReviewImage: "/Stars3.png",
+      starsReviewImage: "/Stars3-5.png",
       verificationImage: "/verification.png"
     }
   ]
