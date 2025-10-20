@@ -206,6 +206,14 @@ app.get("/products", (req, res) => {
   res.status(200).json(db.products);
 });
 
+app.get("/products/:category", (req, res) => {
+  const { category } = req.params;
+  const product = db.products.filter((p) => p.style === category);
+  if (!product) {
+    return res.status(404).json({ error: "Category not found" });
+  }
+  res.status(200).json(product);
+});
 
 app.get("/products/:id", (req, res) => {
   const { id } = req.params;
