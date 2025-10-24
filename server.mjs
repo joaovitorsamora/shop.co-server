@@ -123,19 +123,6 @@ const db = {
     },
     {
       id: 10,
-      image: ["/camisa-verde-escura.png", "/camisa-verde-escura2.png", "/camisa-verde-escura3.png", "/camisa-verde-escura4.png"],
-      title: "One Life Graphic T-shirt",
-      starsReviewImage: "/Stars4-5.png",
-      review: 4.5,
-      price: 260,
-      discount: "-40%",
-      oldPrice: 300,
-      style: "casual",
-      colors: ["#006400", "#FFFFFF"],
-      sizes: ["Small", "Medium", "Large", "X-Large"]
-    },
-    {
-      id: 11,
       image: ["/polo-azul-clara-desktop.png"],
       title: "Polo with Contrast Trims",
       starsReviewImage: "/Stars4.png",
