@@ -189,18 +189,21 @@ const db = {
 };
 
 
+
 app.get("/products", (req, res) => {
   res.status(200).json(db.products);
 });
 
-app.get("/products/:category", (req, res) => {
+
+app.get("/products/category/:category", (req, res) => {
   const { category } = req.params;
-  const product = db.products.filter((p) => p.style === category);
-  if (!product) {
+  const products = db.products.filter((p) => p.style === category);
+  if (products.length === 0) {
     return res.status(404).json({ error: "Category not found" });
   }
-  res.status(200).json(product);
+  res.status(200).json(products);
 });
+
 
 app.get("/products/:id", (req, res) => {
   const { id } = req.params;
@@ -212,10 +215,66 @@ app.get("/products/:id", (req, res) => {
 });
 
 
+app.post("/products", (req, res) => {
+  const newProduct = { id: Date.now(), ...req.body };
+  db.products.push(newProduct);
+  res.status(201).json(newProduct);
+});
+
+
+app.put("/products/:id", (req, res) => {
+  const { id } = req.params;
+  const index = db.products.findIndex((p) => p.id === parseInt(id));
+  if (index === -1) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+  db.products[index] = { ...db.products[index], ...req.body };
+  res.status(200).json(db.products[index]);
+});
+
+
+app.delete("/products/:id", (req, res) => {
+  const { id } = req.params;
+  const index = db.products.findIndex((p) => p.id === parseInt(id));
+  if (index === -1) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+  db.products.splice(index, 1);
+  res.status(204).send();
+});
+
+
+
+app.get("/cart", (req, res) => {
+  res.status(200).json(db.cart || []);
+});
+
+app.post("/cart", (req, res) => {
+  const { productId, quantity } = req.body;
+  const product = db.products.find((p) => p.id === productId);
+  if (!product) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+  const cartItem = { id: Date.now(), productId, quantity };
+  db.cart.push(cartItem);
+  res.status(201).json(cartItem);
+});
+
+app.delete("/cart/:id", (req, res) => {
+  const { id } = req.params;
+  const index = db.cart.findIndex((item) => item.id === parseInt(id));
+  if (index === -1) {
+    return res.status(404).json({ error: "Item not found in cart" });
+  }
+  db.cart.splice(index, 1);
+  res.status(204).send();
+});
+
+
+
 app.get("/testimonials", (req, res) => {
   res.status(200).json(db.testimonials);
 });
-
 
 app.get("/testimonials/:id", (req, res) => {
   const { id } = req.params;
@@ -226,28 +285,33 @@ app.get("/testimonials/:id", (req, res) => {
   res.status(200).json(testimonial);
 });
 
+app.post("/testimonials", (req, res) => {
+  const newTestimonial = { id: Date.now(), ...req.body };
+  db.testimonials.push(newTestimonial);
+  res.status(201).json(newTestimonial);
+});
+
+
 
 app.get("/products/:id/image", (req, res) => {
   const { id } = req.params;
   const product = db.products.find((p) => p.id === parseInt(id));
-  if (!product || !product.image[0]) {
+  if (!product || !product.image?.[0]) {
     return res.status(404).json({ error: "Image not found" });
   }
   const imagePath = path.join(__dirname, "public/images", product.image[0]);
   res.sendFile(imagePath);
 });
 
-
 app.get("/products/:id/starsReviewImage", (req, res) => {
   const { id } = req.params;
   const product = db.products.find((p) => p.id === parseInt(id));
   if (!product || !product.starsReviewImage) {
-    return res.status(404).json({ error: "Image not found" });
+    return res.status(404).json({ error: "Stars review image not found" });
   }
-  const starsReviewImagePath = path.join(__dirname, "public/images", product.starsReviewImage);
-  res.sendFile(starsReviewImagePath);
+  const imagePath = path.join(__dirname, "public/images", product.starsReviewImage);
+  res.sendFile(imagePath);
 });
-
 
 app.get("/testimonials/:id/verification", (req, res) => {
   const { id } = req.params;
@@ -255,10 +319,12 @@ app.get("/testimonials/:id/verification", (req, res) => {
   if (!testimonial || !testimonial.verificationImage) {
     return res.status(404).json({ error: "Verification image not found" });
   }
-  const verificationImagePath = path.join(__dirname, "public/images", testimonial.verificationImage);
-  res.sendFile(verificationImagePath);
+  const imagePath = path.join(__dirname, "public/images", testimonial.verificationImage);
+  res.sendFile(imagePath);
 });
 
+
+
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
